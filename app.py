@@ -1,19 +1,27 @@
 from transformers import pipeline
+from flask import Flask, request, jsonify
+
+# Initialize Flask app
+app = Flask(__name__)
 
 # Load the text generation pipeline
 generator = pipeline("text-generation", model="gpt2")
 
-def generate_text(prompt):
-    # Adjust parameters for better control
+@app.route('/generate', methods=['POST'])
+def generate_text():
+    data = request.get_json()  # Get JSON data from POST request
+    prompt = data.get("prompt", "")
+    
+    # Generate text
     results = generator(prompt, 
-                        max_length=50,  # Maximum length of the generated text
-                        num_return_sequences=1,  # Number of sequences to generate
-                        temperature=0.7,  # Controls randomness; lower is more focused
-                        top_k=50,  # Limits sampling pool to top k tokens
-                        top_p=0.9  # Nucleus sampling; considers top p cumulative probability
+                        max_length=50,  
+                        num_return_sequences=1,  
+                        temperature=0.7,  
+                        top_k=50,  
+                        top_p=0.9  
                         )
-    return results[0]['generated_text']
+    
+    return jsonify({"generated_text": results[0]['generated_text']})
 
 if __name__ == "__main__":
-    prompt = input("Enter a prompt: ")
-    print(generate_text(prompt))
+    app.run(host='0.0.0.0', port=8080)
