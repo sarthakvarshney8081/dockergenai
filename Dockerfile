@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application code
 COPY app.py .
 
-# Expose the port for external access (if running as a web service)
+# Expose the port for external access
 EXPOSE 8080
 
-# Define the command to run the application
+# Define the command to run the Flask web service
 CMD ["python", "app.py"]
