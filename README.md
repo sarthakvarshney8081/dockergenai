@@ -22,7 +22,7 @@ Here, gen-ai-app is the name of the Docker image you are building. Docker will r
 Once the image is built, you can run the container using the following command:
 docker run -it gen-ai-app
 
-# esting with curl
+# Testing with curl
 Test the Flask route using curl. Ensure that you're making a POST request with a JSON payload.
 curl -X POST http://localhost:8080/generate -H "Content-Type: application/json" -d '{"prompt": "What is Docker?"}'
 
