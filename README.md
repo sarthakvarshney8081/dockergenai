@@ -1,4 +1,4 @@
-# hack123
+# How to Deploy a Gen AI Application on Docker?
 I demonstrate how to deploy a Generative AI application using Docker and Flask in this app. We will utilize Hugging Face's transformers library to implement a text-generation model based on GPT-2. The application will expose an endpoint /generate that accepts POST requests with a prompt in the JSON body. The model processes the prompt and generates text, which is then returned as a JSON response. This guide will walk you through setting up Flask, configuring the text-generation pipeline, and containerizing the application with Docker for seamless deployment.
 
 # Step1. Preparing the Gen AI Model
@@ -25,3 +25,4 @@ docker run -it gen-ai-app
 # esting with curl
 Test the Flask route using curl. Ensure that you're making a POST request with a JSON payload.
 curl -X POST http://localhost:8080/generate -H "Content-Type: application/json" -d '{"prompt": "What is Docker?"}'
+
